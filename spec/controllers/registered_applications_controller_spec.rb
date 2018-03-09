@@ -7,7 +7,7 @@ RSpec.describe RegisteredApplicationsController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
     end
-    
+
     it "assigns [my_registered_application] to @registered_applications" do
       get :index
       expect(assigns(:registered_applications)).to eq([my_registered_application])
