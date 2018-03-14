@@ -15,5 +15,14 @@ require 'faker'
 end
 registered_applications = RegisteredApplication.all
 
+# Create Events
+100.times do
+  Event.create!(
+    registered_application: registered_applications.sample,
+    name: Faker::Lorem.sentence
+  )
+end
+
 puts "Seed finished"
 puts "#{RegisteredApplication.count} registered applications created"
+puts "#{Event.count} events created"
