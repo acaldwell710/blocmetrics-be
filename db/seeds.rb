@@ -9,7 +9,7 @@ require 'faker'
 # Create Applications
 50.times do
   RegisteredApplication.create!(
-    name:  Faker::Name.name,
+    name:  Faker::Lorem.sentence,
     url:   Faker::Internet.email
   )
 end

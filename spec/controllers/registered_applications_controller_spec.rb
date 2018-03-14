@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RegisteredApplicationsController, type: :controller do
 
-  let(:my_registered_application) { RegisteredApplication.create!(name: Faker::Name.name, url: Faker::Internet.email) }
+  let(:my_registered_application) { RegisteredApplication.create!(name: Faker::Lorem.sentence, url: Faker::Internet.email) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -35,18 +35,18 @@ RSpec.describe RegisteredApplicationsController, type: :controller do
 
   describe "RegisteredApplication create" do
       it "increases the number of RegisteredApplication by 1" do
-        expect{post :create, params: {registered_application: {name: Faker::Name.name, url: Faker::Internet.email}}}.to change(RegisteredApplication,:count).by(1)
+        expect{post :create, params: {registered_application: {name: Faker::Lorem.sentence, url: Faker::Internet.email}}}.to change(RegisteredApplication,:count).by(1)
       end
 
  # #5
       it "assigns the new registered_application to @registered_application" do
-        post :create, params: {registered_application: {name: Faker::Name.name, url: Faker::Internet.email}}
+        post :create, params: {registered_application: {name: Faker::Lorem.sentence, url: Faker::Internet.email}}
         expect(assigns(:registered_application)).to eq RegisteredApplication.last
       end
 
  # #6
       it "redirects to the new registered_application" do
-        post :create, params: {registered_application: {name: Faker::Name.name, url: Faker::Internet.email}}
+        post :create, params: {registered_application: {name: Faker::Lorem.sentence, url: Faker::Internet.email}}
         expect(response).to redirect_to RegisteredApplication.last
       end
     end
