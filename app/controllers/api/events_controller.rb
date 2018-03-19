@@ -11,12 +11,15 @@ class API::EventsController < ApplicationController
 
   def create
     registered_application = RegisteredApplication.find_by(url: request.env['HTTP_ORIGIN'])
-
-    if registered_application != nil
-      render json: @event, status: :created
-      redirect_to @registered_applications
-    else
-      flash.now[:alert] = "There was an error saving the Registered Application. Please try again."
+    @event = registered_application.events.build(event_params)
+    @event.save
+    
+      if @event.save
+        render json: @event, status: :created
+      else
+        render json: {errors: @event.errors}, status: :unprocessable_entity
+      end
+    if registered_application == nil
       render json: "Unregistered application", status: :unprocessable_entity
     end
   end
