@@ -4,8 +4,10 @@ Rails.application.routes.draw do
      match '/events', to: 'events#preflight', via: [:options]
      resources :events, only: [:create]
    end
-  resources :registered_applications
-  resources :events
+  resources :registered_applications do
+      resources :events, except: [:create]
+  end
+
 
   devise_for :users
   get "welcome/index"

@@ -11,6 +11,7 @@
     @registered_application = RegisteredApplication.new
     @registered_application.name = params[:registered_application][:name]
     @registered_application.url = params[:registered_application][:url]
+    
 
     if @registered_application.save
       flash[:notice] = "Registered Application was saved."
